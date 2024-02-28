@@ -12,7 +12,7 @@ interface movies {
 var { width, height } = Dimensions.get('window');
 
 export const MovieList: React.FC<movies> = ({ title, data, hideSeeAll }: movies) => {
-    let movieName = 'Spider-Man 2'
+    let movieName = 'Harry Potter 2'
     const navigation = useNavigation();
 
     return (
@@ -43,7 +43,7 @@ export const MovieList: React.FC<movies> = ({ title, data, hideSeeAll }: movies)
                             >
                                 <View className='spcae-y-1 mr-4'>
                                     <Image
-                                        source={require('../assets/poster/poster-2.jpg')}
+                                        source={require('../assets/poster/hp-1.jpg')}
                                         className='rounded-3xl'
                                         style={{ width: width * 0.33, height: height * 0.22 }}
                                     />

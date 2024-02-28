@@ -40,7 +40,7 @@ const MovieCard: React.FC<Props> = ({ item, handleClick }) => {
     return (
         <TouchableWithoutFeedback onPress={() => handleClick(item)}>
             <Image
-                source={require('../assets/poster/poster-1.jpg')}
+                source={require('../assets/poster/hp-1.jpg')}
                 style={{
                     width: width * 0.6,
                     height: height * 0.4

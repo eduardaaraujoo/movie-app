@@ -7,8 +7,8 @@ interface CastProps {
 }
 
 const Cast: React.FC<CastProps> = ({ cast, navigation }) => {
-    let personName = 'Tom Holland';
-    let characterName = 'Spider-man/Peter Parker'
+    let personName = 'Daniel Radcliffe';
+    let characterName = 'Harry Potter'
 
     return (
         <View className='my-6'>
@@ -27,7 +27,7 @@ const Cast: React.FC<CastProps> = ({ cast, navigation }) => {
                                 onPress={() => { navigation.navigate('Person', person) }}
                             >
                                 <View className='overflow-hidden rounded-full h-20 w-20 items-center border border-neutral-500'>
-                                    <Image className="rounded-2xl h-24 w-20" source={require('../assets/actor/ator-1.jpg')} />
+                                    <Image className="rounded-2xl h-24 w-20" source={require('../assets/actor/daniel.jpg')} />
                                 </View>
                                 <Text className='text-white text-xs mt-1'>
                                     {

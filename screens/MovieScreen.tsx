@@ -43,7 +43,7 @@ export const MovieScreen = () => {
         </SafeAreaView>
         <View>
           <Image
-            source={require('../assets/poster/poster-1.jpg')}
+            source={require('../assets/poster/hp-1.jpg')}
             style={{ width: width, height: height * 0.55 }} />
           <LinearGradient
             colors={['transparent', 'rgba(23,23,23, 0.8)', 'rgba(23,23,23, 1)']}
