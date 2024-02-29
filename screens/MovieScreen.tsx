@@ -20,7 +20,7 @@ export const MovieScreen = () => {
   const [cast, setCast] = useState([1, 2, 3, 4, 5]);
   const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5]);
 
-  let movieName = 'Spider-Man No Way Home'
+  let movieName = 'Harry Potter e o prisioneiro de azkaban'
 
   useEffect(() => {
     //call the movie details api
@@ -64,14 +64,11 @@ export const MovieScreen = () => {
         </Text>
         {/* status, release, runtime */}
         <Text className='text-neutral-400 font-semibold text-base text-center'>
-          RELEASED • 2021 • 170min
+          RELEASED • 2004 • 141min
         </Text>
 
         {/* genre */}
         <View className='flex-row justify-center mx-4 space-x-2'>
-          <Text className='text-neutral-400 font-semibold text-base text-center'>
-            Action •
-          </Text>
           <Text className='text-neutral-400 font-semibold text-base text-center'>
             Adventure •
           </Text>
@@ -82,7 +79,7 @@ export const MovieScreen = () => {
 
         {/* description */}
         <Text className='text-neutral-400 mx-4 tracking-wide'>
-          Peter Parker's secret identity is revealed to the entire world. Desperate for help, Peter turns to Doctor Strange to make the world forget that he is Spider-Man. The spell goes horribly wrong and shatters the multiverse, bringing in monstrous villains that could destroy the world. The Multiverse Unleashed.
+        The 3rd year of teaching at Hogwarts School of Witchcraft and Wizardry approaches. However, a great danger surrounds the school: the murderer Sirius Black (Gary Oldman) escaped from Azkaban prison, considered until then to be escape-proof. Dementors are sent to protect the school, strange beings that suck the vital energy of anyone who approaches them, which can either defend the school or make the situation even worse.
         </Text>
       </View>
 
