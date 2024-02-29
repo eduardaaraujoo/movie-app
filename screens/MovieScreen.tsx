@@ -20,7 +20,7 @@ export const MovieScreen = () => {
   const [cast, setCast] = useState([1, 2, 3, 4, 5]);
   const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5]);
 
-  let movieName = 'Harry Potter e o prisioneiro de azkaban'
+  let movieName = 'Harry Potter and Prisoner of Azkaban '
 
   useEffect(() => {
     //call the movie details api

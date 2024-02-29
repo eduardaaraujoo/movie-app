@@ -7,12 +7,14 @@ import { TrendingMovies } from "../components/trendingMovies";
 import { useState } from "react";
 import { MovieList } from "../components/movieList";
 import { useNavigation } from "@react-navigation/native";
+import { Loading } from "../components/loading";
 
 const ios = Platform.OS === 'ios';
 export default function HomeScreen() {
     const [trending, setTrendig] = useState([1, 2, 3]);
     const [upcoming, setUpcoming] = useState([1, 2, 3]);
     const [topRated, setTopRated] = useState([1, 2, 3]);
+    const [loading, setLoading] = useState(true);
     const navigation = useNavigation(); 
 
 
@@ -32,19 +34,28 @@ export default function HomeScreen() {
                 </View>
             </SafeAreaView>
 
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingBottom: 10 }}
-            >
-                {/* Trending movies caroules */}
-                <TrendingMovies data={trending} />
+            {
+                loading? (
+                    <Loading />
+                ):(
+                    <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingBottom: 10 }}
+                >
+                    {/* Trending movies caroules */}
+                    <TrendingMovies data={trending} />
+    
+                    {/* upcoming movies row */}
+                    <MovieList title="UpComing" data={upcoming} />
+    
+                    {/* top rated movies row */}
+                    <MovieList title="Top Rated" data={topRated} />
+                </ScrollView>
 
-                {/* upcoming movies row */}
-                <MovieList title="UpComing" data={upcoming} />
+                )
+            }
 
-                {/* top rated movies row */}
-                <MovieList title="Top Rated" data={topRated} />
-            </ScrollView>
+           
         </View>
     )
 }

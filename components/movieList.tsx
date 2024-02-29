@@ -12,7 +12,7 @@ interface movies {
 var { width, height } = Dimensions.get('window');
 
 export const MovieList: React.FC<movies> = ({ title, data, hideSeeAll }: movies) => {
-    let movieName = 'Harry Potter 2'
+    let movieName = 'Harry Potter 3'
     const navigation = useNavigation();
 
     return (
