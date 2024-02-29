@@ -38,16 +38,16 @@ export const PersonScreen: React.FC = () => {
                     style={{ shadowColor: 'gray', shadowRadius: 40, shadowOffset: { width: 0, height: 5 }, shadowOpacity: 1 }}
                 >
                     <View className='items-center rounded-full overflow-hidden h-72 w-72 border border-neutral-500'>
-                        <Image source={require('../assets/actor/ator-1.jpg')}
+                        <Image source={require('../assets/actor/daniel.jpg')}
                             style={{ height: height * 0.43, width: width * 0.74 }} />
                     </View>
                 </View>
                 <View className='mt-6'>
                     <Text className='text-3xl text-white font-bold text-center'>
-                        Tom Holland
+                        Daniel Radcliffe
                     </Text>
                     <Text className='text-base text-neutral-500 font-bold text-center'>
-                        Surrey, United Kingdom
+                        London, England
                     </Text>
                 </View>
                 <View className='mx-3 p-4 mt-6 flex-row justify-evenly items-center bg-neutral-700 rounded-full'>
@@ -57,7 +57,7 @@ export const PersonScreen: React.FC = () => {
                     </View>
                     <View className='border-r-2 border-r-neutral-400 px-2 items-center'>
                         <Text className='text-white font-semibold'>Birthday</Text>
-                        <Text className='text-neutral-300 font-sm'>1996-06-01</Text>
+                        <Text className='text-neutral-300 font-sm'>1989-07-23</Text>
                     </View>
                     <View className='border-r-2 border-r-neutral-400 px-2 items-center'>
                         <Text className='text-white font-semibold'>Known for</Text>
@@ -71,7 +71,11 @@ export const PersonScreen: React.FC = () => {
                 <View className='my-6 mx-4 space-y-2'>
                     <Text className='text-white text-lg'>Biography</Text>
                     <Text className='text-neutral-400 tracking-wide'>
-                        Thomas "Tom" Holland is an English actor and dancer, best known for playing the lead role in Billy Elliot the Musical at the Victoria Palace Theatre, London, as well as for starring in the 2012 film The Impossible. Lastly, he became a winner of the Hollywood Spotlight Award, as well as the National Board of Review’s award in the “Breakthrough Actor” category at the 2012 London Film Critics Circle Awards in “Young British Performer of the Year”. He was featured in Screen International’s “UK Stars of Tomorrow – 2012” and in Variety’s “Youth Impact Report 2012”.
+                    Daniel Radcliffe (1989) is an English actor who gained fame playing the wizard Harry Potter - the protagonist of the Harry Potter films adapted from the stories by English writer J. K. Rowling.
+
+                    Daniel Jacob Radcliffe (1989) was born in London, England, on July 23, 1989. Born into an upper-class family in London, he enjoyed acting from an early age.
+
+                    In 1999, at the age of 10, he won his first role in the film “David Copperfield” when he played David himself. In 2000 he starred as Mark Pendel in “The Tailor of Panama”
                     </Text>
                 </View>
 
