@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles, themeColors } from '../theme';
 import { ChevronLeftIcon } from 'react-native-heroicons/outline';
 import { MovieList } from '../components/movieList';
+import { Loading } from '../components/loading';
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
@@ -15,6 +16,8 @@ export const PersonScreen: React.FC = () => {
     const navigation = useNavigation();
     const [isFavourite, toggleFavourite] = useState(false);
     const [personMovies, setPersonMovies] = useState([1, 2, 3, 4])
+    const [loading, setLoading] = useState(false);
+
 
     return (
         <ScrollView
@@ -33,7 +36,11 @@ export const PersonScreen: React.FC = () => {
             </SafeAreaView>
 
             {/* person details */}
-            <View>
+            {
+                loading? (
+                    <Loading />
+                ):(
+                    <View>
                 <View className='flex-row justify-center'
                     style={{ shadowColor: 'gray', shadowRadius: 40, shadowOffset: { width: 0, height: 5 }, shadowOpacity: 1 }}
                 >
@@ -82,6 +89,11 @@ export const PersonScreen: React.FC = () => {
                 { /* movies */}
                 <MovieList title={'Movies'} data={personMovies} />
             </View>
+                )
+            }
+
+
+            
         </ScrollView>
     );
 }

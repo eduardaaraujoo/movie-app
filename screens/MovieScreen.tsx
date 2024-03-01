@@ -1,13 +1,14 @@
-import { useNavigation, useRoute } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
-import { Dimensions, Image, Platform, ScrollView, Text, Pressable, View } from 'react-native'
-import { ChevronLeftIcon } from 'react-native-heroicons/outline'
-import { HeartIcon } from 'react-native-heroicons/solid'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { styles, themeColors } from '../theme'
-import { LinearGradient } from 'expo-linear-gradient'
-import Cast from '../components/cast'
-import { MovieList } from '../components/movieList'
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Image, Platform, ScrollView, Text, Pressable, View } from 'react-native';
+import { ChevronLeftIcon } from 'react-native-heroicons/outline';
+import { HeartIcon } from 'react-native-heroicons/solid';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles, themeColors } from '../theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import Cast from '../components/cast';
+import { MovieList } from '../components/movieList';
+import { Loading } from '../components/loading';
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
@@ -18,6 +19,7 @@ export const MovieScreen = () => {
   const [isFavourite, toggleFavourite] = useState(false);
   const navigation = useNavigation();
   const [cast, setCast] = useState([1, 2, 3, 4, 5]);
+  const [loading, setLoading] = useState(false);
   const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5]);
 
   let movieName = 'Harry Potter and Prisoner of Azkaban '
@@ -41,18 +43,27 @@ export const MovieScreen = () => {
             <HeartIcon size="35" color={isFavourite ? themeColors.background : "white"} />
           </Pressable >
         </SafeAreaView>
-        <View>
-          <Image
-            source={require('../assets/poster/hp-1.jpg')}
-            style={{ width: width, height: height * 0.55 }} />
-          <LinearGradient
-            colors={['transparent', 'rgba(23,23,23, 0.8)', 'rgba(23,23,23, 1)']}
-            style={{ width, height: height * 0.40 }}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            className='absolute bottom-0'
-          />
-        </View>
+
+          {
+              loading? (
+                <Loading />
+              ): (
+                <View>
+                <Image
+                  source={require('../assets/poster/hp-1.jpg')}
+                  style={{ width: width, height: height * 0.55 }}
+                />
+                <LinearGradient
+                  colors={['transparent', 'rgba(23,23,23, 0.8)', 'rgba(23,23,23, 1)']}
+                  style={{ width, height: height * 0.40 }}
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 1 }}
+                  className='absolute bottom-0'
+                />
+              </View>
+              )
+          }
+
       </View>
 
       {/* movie details */}

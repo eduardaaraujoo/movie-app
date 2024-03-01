@@ -14,7 +14,7 @@ export default function HomeScreen() {
     const [trending, setTrendig] = useState([1, 2, 3]);
     const [upcoming, setUpcoming] = useState([1, 2, 3]);
     const [topRated, setTopRated] = useState([1, 2, 3]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const navigation = useNavigation(); 
 
 
