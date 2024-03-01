@@ -8,7 +8,7 @@ const trendingMoviesEndpoints =  `${apiBaseUrl}/trending/movie/day?api_key=${api
 const upComingMoviesEndpoint =  `${apiBaseUrl}/movie/upcoming?api_key=${apiKey}`;
 const topRatedMoviesEndpoint =  `${apiBaseUrl}/movie/top_rated?api_keys=${apiKey}`;
 
-const apiCall = async (endpoint: any, params: any) => {
+const apiCall = async (endpoint?: any, params?: any) => {
     const options = {
         method: 'GET',
         url: endpoint,
@@ -23,9 +23,8 @@ const apiCall = async (endpoint: any, params: any) => {
         console.log('error: ', error);
             return{}
     }
+}
 
-    export const fetchTrendingMovies = () => {
-        return apiCall(trendingMoviesEndpoint);
-    }
-
+export const fetchTrendingMovies = () => {
+    return apiCall(trendingMoviesEndpoints);
 }
