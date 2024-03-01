@@ -4,7 +4,7 @@ import React from 'react';
 
 //endpoints 
 const apiBaseUrl = 'https://api.themoviedb.org/3';
-const trendingMoviesEndpoints =  `${apiBaseUrl}/trending/movie/day?api_key=${apiKey}`;
+const trendingMoviesEndpoint =  `${apiBaseUrl}/trending/movie/day?api_key=${apiKey}`;
 const upComingMoviesEndpoint =  `${apiBaseUrl}/movie/upcoming?api_key=${apiKey}`;
 const topRatedMoviesEndpoint =  `${apiBaseUrl}/movie/top_rated?api_keys=${apiKey}`;
 
@@ -26,5 +26,11 @@ const apiCall = async (endpoint?: any, params?: any) => {
 }
 
 export const fetchTrendingMovies = () => {
-    return apiCall(trendingMoviesEndpoints);
+    return apiCall(trendingMoviesEndpoint);
+}
+export const fetchUpComingMovies = () => {
+    return apiCall(upComingMoviesEndpoint);
+}
+export const fetchTopRatedMovies = () => {
+    return apiCall(topRatedMoviesEndpoint);
 }

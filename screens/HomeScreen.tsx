@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import { styles } from "../theme";
 import { TrendingMovies } from "../components/trendingMovies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieList } from "../components/movieList";
 import { useNavigation } from "@react-navigation/native";
 import { Loading } from "../components/loading";
@@ -18,6 +18,13 @@ export default function HomeScreen() {
     const navigation = useNavigation(); 
 
 
+    useEffect(() =>{
+        getTrendingMovies();
+    },[])
+
+    const getTrendingMovies = async () => {
+
+    }
     return (
         <View className="flex-1 bg-neutral-800">
             {/* search bar and logo */}
