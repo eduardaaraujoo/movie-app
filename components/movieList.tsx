@@ -2,6 +2,7 @@ import React from 'react'
 import { Dimensions, Image, ScrollView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import { styles } from '../theme'
 import { useNavigation } from '@react-navigation/native'
+import { fallbackMoviePoster, image185 } from '../api/moviedb'
 
 interface movies {
     title: string,
@@ -35,7 +36,7 @@ export const MovieList: React.FC<movies> = ({ title, data, hideSeeAll }: movies)
                 contentContainerStyle={{ paddingTop: 15 }}
             >
                 {
-                    data.map((item: any, index: any) => {
+                    data && data.map((item: any, index: any) => {
                         return (
                             <TouchableWithoutFeedback
                                 key={index}
@@ -43,13 +44,16 @@ export const MovieList: React.FC<movies> = ({ title, data, hideSeeAll }: movies)
                             >
                                 <View className='spcae-y-1 mr-4'>
                                     <Image
-                                        source={require('../assets/poster/hp-1.jpg')}
+                                        source={{ uri: image185(item.poster_path) || fallbackMoviePoster  }}
+                                        //source={require('../assets/poster/hp-1.jpg')}
                                         className='rounded-3xl'
                                         style={{ width: width * 0.33, height: height * 0.22 }}
                                     />
-                                    <Text className='text-neutral-300 ml-1'>{
-                                        movieName.length > 14 ? movieName.slice(0, 14) + '...' : movieName
-                                    }</Text>
+                                    <Text className='text-neutral-300 ml-1'>
+                                        {
+                                            item.title.length  > 14 ? item.title.slice(0, 14) + '...' : item.title
+                                        }
+                                    </Text>
                                 </View>
                             </TouchableWithoutFeedback>
                         )

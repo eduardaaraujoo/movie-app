@@ -9,6 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Cast from '../components/cast';
 import { MovieList } from '../components/movieList';
 import { Loading } from '../components/loading';
+import { fallbackMoviePoster, fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image500 } from '../api/moviedb';
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
@@ -20,14 +21,38 @@ export const MovieScreen = () => {
   const navigation = useNavigation();
   const [cast, setCast] = useState([1, 2, 3, 4, 5]);
   const [loading, setLoading] = useState(false);
-  const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5]);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [movie, setMovie] = useState({});
 
   let movieName = 'Harry Potter and Prisoner of Azkaban '
 
   useEffect(() => {
-    //call the movie details api
-  }, [item])
+    console.log('itemid: ', item.id);
+    setLoading(true);
+    getMovieDetails(item.id);
+    getMovieCredits(item.id);
+    getSimilarMovies(item.id);
+  }, [item]);
 
+    const getMovieDetails = async id => {
+      const data = await fetchMovieDetails(id);
+      //console.log('got movie details: ', data);
+      if(data) setMovie(data);
+      setLoading(false);
+
+    }
+
+    const getMovieCredits = async id => {
+      const data = await fetchMovieCredits(id);
+      //console.log('got credits: ', data)
+      if(data && data.cast) setCast(data.cast);
+    }
+
+    const getSimilarMovies = async id => {
+      const data = await fetchSimilarMovies(id);
+     // console.log('got similar movies: ', data)
+      if(data && data.results) setSimilarMovies(data.results);
+    }
   return (
     <ScrollView
       contentContainerStyle={{ paddingBottom: 20 }}
@@ -50,7 +75,8 @@ export const MovieScreen = () => {
               ): (
                 <View>
                 <Image
-                  source={require('../assets/poster/hp-1.jpg')}
+                 // source={require('../assets/poster/hp-1.jpg')}
+                 source={{uri: image500(movie?.poster_path) || fallbackMoviePoster }}
                   style={{ width: width, height: height * 0.55 }}
                 />
                 <LinearGradient
@@ -71,26 +97,45 @@ export const MovieScreen = () => {
       <View style={{ marginTop: -(height * 0.09) }} className='space-y-3'>
         {/* title */}
         <Text className='text-white text-center text-3xl font-bold tracking-wider'>
-          {movieName}
+          {
+            movie?.title
+          }
         </Text>
+
         {/* status, release, runtime */}
-        <Text className='text-neutral-400 font-semibold text-base text-center'>
-          RELEASED • 2004 • 141min
-        </Text>
+        {
+          movie?.id?(
+            <Text className='text-neutral-400 font-semibold text-base text-center'>
+                {movie?.status} •{movie?.release_date.split('-')[0]} • {movie?.runtime} min
+            </Text>
+          ):null
+        }
+        
 
         {/* genre */}
         <View className='flex-row justify-center mx-4 space-x-2'>
-          <Text className='text-neutral-400 font-semibold text-base text-center'>
+          {
+            movie?.genres?.map((genre: any, index: any) => {
+              let showDot = index + 1 != movie.genres.length;
+              return (
+                <Text key={index} className='text-neutral-400 font-semibold text-base text-center'>
+                  {genre?.name}  {showDot? "•": null}
+                </Text>
+              )
+            })
+          }
+
+          {/* <Text className='text-neutral-400 font-semibold text-base text-center'>
             Adventure •
           </Text>
           <Text className='text-neutral-400 font-semibold text-base text-center'>
             Fantasy
-          </Text>
+          </Text> */}
         </View>
 
         {/* description */}
         <Text className='text-neutral-400 mx-4 tracking-wide'>
-        The 3rd year of teaching at Hogwarts School of Witchcraft and Wizardry approaches. However, a great danger surrounds the school: the murderer Sirius Black (Gary Oldman) escaped from Azkaban prison, considered until then to be escape-proof. Dementors are sent to protect the school, strange beings that suck the vital energy of anyone who approaches them, which can either defend the school or make the situation even worse.
+          {movie?.overview}
         </Text>
       </View>
 

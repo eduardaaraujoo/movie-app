@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { Dimensions, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import Carousel from 'react-native-snap-carousel-v4'
+import { image500 } from '../api/moviedb';
 
 interface trending {
     data: any,
@@ -36,11 +37,13 @@ interface Props {
 }
 
 const MovieCard: React.FC<Props> = ({ item, handleClick }) => {
+    console.log('item.poster_path: ', item.poster_path);
 
     return (
         <TouchableWithoutFeedback onPress={() => handleClick(item)}>
             <Image
-                source={require('../assets/poster/hp-1.jpg')}
+                //source={require('../assets/poster/hp-1.jpg')}
+                source={{uri: image500(item.poster_path)}}
                 style={{
                     width: width * 0.6,
                     height: height * 0.4

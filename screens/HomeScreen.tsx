@@ -8,23 +8,45 @@ import { useEffect, useState } from "react";
 import { MovieList } from "../components/movieList";
 import { useNavigation } from "@react-navigation/native";
 import { Loading } from "../components/loading";
+import {  fetchTrendingMovies, fetchUpComingMovies } from "../api/moviedb";
 
 const ios = Platform.OS === 'ios';
 export default function HomeScreen() {
-    const [trending, setTrendig] = useState([1, 2, 3]);
-    const [upcoming, setUpcoming] = useState([1, 2, 3]);
-    const [topRated, setTopRated] = useState([1, 2, 3]);
-    const [loading, setLoading] = useState(false);
+    const [trending, setTrendig] = useState<any[]>([]);
+    const [upcoming, setUpcoming] =  useState<any[]>([]);
+    const [topRated, setTopRated] =  useState<any[]>([]);;
+    const [loading, setLoading] = useState(true);
     const navigation = useNavigation(); 
 
 
     useEffect(() =>{
         getTrendingMovies();
+        getUpcomingMovies();
+        getTopRatedMovies();
     },[])
 
     const getTrendingMovies = async () => {
-
+        const data = await fetchTrendingMovies();
+           // console.log('got trending movies', data);
+            if(data && data.results) setTrendig(data.results);
+            setLoading(false);
     }
+
+    const  getUpcomingMovies = async () => {
+        const data = await fetchUpComingMovies();
+            //console.log('got upcoming movies', data);
+            if(data && data.results) setUpcoming(data.results);
+            setLoading(false);
+    }
+
+    const  getTopRatedMovies = async () => {
+        const data = await fetchTrendingMovies();
+           // console.log('got top rated movies ', data);
+            if(data && data.results) setTopRated(data.results);
+           // setLoading(false);
+    }
+
+
     return (
         <View className="flex-1 bg-neutral-800">
             {/* search bar and logo */}
@@ -49,8 +71,8 @@ export default function HomeScreen() {
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ paddingBottom: 10 }}
                 >
-                    {/* Trending movies caroules */}
-                    <TrendingMovies data={trending} />
+                    {/* Trending movies carousel */}
+                   { trending.length>0 && <TrendingMovies data={trending} /> }
     
                     {/* upcoming movies row */}
                     <MovieList title="UpComing" data={upcoming} />
