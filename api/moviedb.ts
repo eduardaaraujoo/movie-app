@@ -14,10 +14,12 @@ const movieCreditsEndpoint = (id: string) => `${apiBaseUrl}/movie/${id}/credits?
 const movieSimilarEndpoint = (id: string) => `${apiBaseUrl}/movie/${id}/similar?api_key=${apiKey}`;
 
 
+const personDetailsEndpoint = (id: string) => `${apiBaseUrl}/person/${id}/?api_key=${apiKey}`;
+const personMoviesEndpoint = (id: string) => `${apiBaseUrl}/person/${id}/movie_credits?api_key=${apiKey}`;
 
-export const image500 = (path: string) =>  `https://image.tmdb.org/t/p/w500${path}`
-export const image342 = (path: string) =>  `https://image.tmdb.org/t/p/w342${path}`
-export const image185 = (path: string) =>  `https://image.tmdb.org/t/p/w185${path}`
+export const image500 = (path: string) => `https://image.tmdb.org/t/p/w500${path}`;
+export const image342 = (path: string) =>  `https://image.tmdb.org/t/p/w342${path}`;
+export const image185 = (path: string) => `https://image.tmdb.org/t/p/w185${path}`;
 
 
 export const fallbackMoviePoster = 'https://www.movienewz.com/img/films/poster-holder.jpg';
@@ -58,4 +60,10 @@ export const fetchMovieCredits = (id: string)=>{
 }
 export const fetchSimilarMovies = (id: string)=>{
     return apiCall(movieSimilarEndpoint(id));
+}
+export const fetchPersonDetails = (id: string)=>{
+    return apiCall(personDetailsEndpoint(id));
+}
+export const fetchPersonMovies = (id: string)=>{
+    return apiCall(personMoviesEndpoint(id));
 }
