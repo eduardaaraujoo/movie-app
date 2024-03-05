@@ -77,12 +77,12 @@ export const PersonScreen: React.FC = () => {
                 <View className='mt-6'>
                     <Text className='text-3xl text-white font-bold text-center'>
                         {
-                            person?.name
+                             person?.name
                         }
                     </Text>
                     <Text className='text-base text-neutral-500 font-bold text-center'>
                        {
-                        person?.place_of_birth
+                            person?.place_of_birth
                        }
                     </Text>
                 </View>
@@ -101,7 +101,7 @@ export const PersonScreen: React.FC = () => {
                     </View>
                     <View className='border-r-2 border-r-neutral-400 px-2 items-center'>
                         <Text className='text-white font-semibold'>Known for</Text>
-                        <Text className='text-neutral-300 font-sm'>{person?.know_for_department}</Text>
+                        <Text className='text-neutral-300 font-sm'>{person?.known_for_department}</Text>
                     </View>
                     <View className='px-2 items-center'>
                         <Text className='text-white font-semibold'>Popularity</Text>
@@ -118,7 +118,7 @@ export const PersonScreen: React.FC = () => {
                 </View>
 
                 { /* movies */}
-               {/* <MovieList title={'Movies'} data={personMovies} /> */}
+               <MovieList title={'Movies'} data={personMovies} /> 
             </View>
                 )
             }

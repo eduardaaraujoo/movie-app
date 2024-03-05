@@ -12,9 +12,10 @@ const topRatedMoviesEndpoint =  `${apiBaseUrl}/movie/top_rated?api_keys=${apiKey
 const movieDetailsEndpoint = (id: string) => `${apiBaseUrl}/movie/${id}?api_key=${apiKey}`;
 const movieCreditsEndpoint = (id: string) => `${apiBaseUrl}/movie/${id}/credits?api_key=${apiKey}`;
 const movieSimilarEndpoint = (id: string) => `${apiBaseUrl}/movie/${id}/similar?api_key=${apiKey}`;
+const searchMoviesEndpoint = `${apiBaseUrl}/search/movie?api_key=${apiKey}`;
 
 
-const personDetailsEndpoint = (id: string) => `${apiBaseUrl}/person/${id}/?api_key=${apiKey}`;
+const personDetailsEndpoint = (id: string) => `${apiBaseUrl}/person/${id}?api_key=${apiKey}`;
 const personMoviesEndpoint = (id: string) => `${apiBaseUrl}/person/${id}/movie_credits?api_key=${apiKey}`;
 
 export const image500 = (path: string) => `https://image.tmdb.org/t/p/w500${path}`;
@@ -66,4 +67,7 @@ export const fetchPersonDetails = (id: string)=>{
 }
 export const fetchPersonMovies = (id: string)=>{
     return apiCall(personMoviesEndpoint(id));
+}
+export const searchMovies = params =>{
+    return apiCall(searchMoviesEndpoint, params);
 }
